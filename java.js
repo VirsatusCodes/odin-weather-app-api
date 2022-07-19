@@ -16,6 +16,8 @@ let weatherLocation;
 })();
 
 async function getWeatherInfo() {
+
+    try{
     const textOutput = document.getElementById('weather-info');
     const response = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${weatherLocation}&units=imperial&APPID=d24b077e6c1742ff58872e0136f6ff54`);
     const responseObj = await response.json()
@@ -38,4 +40,7 @@ async function getWeatherInfo() {
     const gifResponseObj = await gifResponse.json()
 
     img.src = gifResponseObj.data.images.original.url
+    } catch (err) {
+        console.log(err)
+    }
 }
